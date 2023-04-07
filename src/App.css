@@ -13,6 +13,14 @@
   }
 }
 
+.app-navbar{
+  background-color: rgb(15, 106, 70) !important;
+  color : rgb(255, 255, 255) !important;
+}
+.navbar-icon{
+  color : rgb(255, 255, 255) !important;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
