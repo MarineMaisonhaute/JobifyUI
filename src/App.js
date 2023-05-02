@@ -7,6 +7,7 @@ import Login from './Login';
 import Protected from './Protected';
 import { Base64 } from 'js-base64';
 import Home from './Views/Home/Home';
+import SignUp from './SignUP';
 
 function isTokenExpired(token) {
   try {
@@ -43,8 +44,8 @@ function App() {
   <Routes>
     <Route path="/login" element={<Login />} />
     <Route path="/protected" element={<ProtectedRoute><Protected /></ProtectedRoute>} />
-    <Route path="/Home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
-    <Route path="/" element={<Home />} exact />
+    <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+    <Route path="/SignUp" element={<SignUp />} exact />
   </Routes>
   </BrowserRouter>
   );

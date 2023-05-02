@@ -45,6 +45,7 @@ export default function Navbar() {
 
     const logout = () => {
         localStorage.removeItem("access_token");
+        localStorage.removeItem("roles");
         navigate("/login");
     }
 
@@ -52,15 +53,6 @@ export default function Navbar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar className="app-navbar" position="static">
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            className = "navbar-icon"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Jobify
           </Typography>
