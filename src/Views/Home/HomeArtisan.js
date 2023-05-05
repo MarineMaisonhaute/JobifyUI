@@ -9,12 +9,17 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 import './Home.css';
+import moment from 'moment';
+
+
 
 function HomeArtisan(props) 
   {
     useEffect(()=>{
     })
-
+    const dateString = props.post.finishDate;
+    const date = moment(dateString);
+    const formattedDate = date.format('YYYY-MM-DD');
   return (
     <Card className="card-container">
       <CardContent>
@@ -25,20 +30,20 @@ function HomeArtisan(props)
         Description : {props.post.description}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-        {props.post.jobId}
+        Job recherché : {props.post.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
         Prix : {props.post.price}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-        Date Limite : {props.post.finishDate}
+        Date Limite : {formattedDate}
         </Typography>
         <Typography variant="body2" color="text.secondary">
         Département : {props.post.department}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button className="button">Répondre</Button>
+        <Button className="button">Proposer son aide</Button>
       </CardActions>
     </Card>
   );

@@ -1,11 +1,21 @@
 .card-container {
-    display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   width: 50%;
   margin: 0 auto;
+  margin-top: 20px;
+  background-color: rgb(112, 165, 112) !important;
   }
   
-  .button {display: flex;
-    margin: 0 auto;
-  }
+.button {
+  display: flex;
+  margin: 0 auto;
+  color :rgb(255, 255, 255) !important;
+}
+
+.Ajout {
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+}
