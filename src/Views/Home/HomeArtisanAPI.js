@@ -3,31 +3,28 @@ import { useEffect, useState } from "react";
 import * as React from 'react';
 import HomeArtisan from "./HomeArtisan";
 
-function Test(Id){
-  const [posto, setPosto] = useState([]);
+export function NomJobArtisan(Id) {  
+  const [posto, setPosto] = useState(null);
+  
   useEffect(() => {
-    axios.get(`https://localhost:7004/job/id/${Id}`, {
-    }).then((res) => {
-      console.log(res.data)
-      setPosto(res.data.name);
-    }).catch((err) => {
-      console.log(err);
-    })
-  }, []
-)
-return posto;
+    axios.get(`https://localhost:7004/job/id/${Id}`)
+      .then((res) => {
+        setPosto(res.data[0]);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }, []);
+  
+  return posto ? posto.name : "Aucun job particulier";
 }
 
 function HomeArtisanAPI(props) {
-  const [jobname, setjobname] = useState([]);
   const [post, setPost] = useState([]);
   
   useEffect(() => {
     axios.get("https://localhost:7004/post")
       .then((res) => {
-        jobname = Test(res.data.jobId);
-        console.log(res.data);
-        setjobname(jobname);
         setPost(res.data);
       })
       .catch((err) => {
@@ -37,11 +34,12 @@ function HomeArtisanAPI(props) {
 
   return (
     <div>
-      {post.map((item, index) => (
-        <HomeArtisan key={index} post={item} />
-      ))}
+      {post.map((item, index) => {
+        return <HomeArtisan key={index} post={item}/>
+      })}
     </div>
   );
 }
+
 
 export default HomeArtisanAPI;

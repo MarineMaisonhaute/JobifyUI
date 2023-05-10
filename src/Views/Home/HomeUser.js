@@ -10,6 +10,7 @@ import { useState } from 'react';
 import './Home.css';
 import moment from 'moment';
 import { FaPlus } from 'react-icons/fa'
+import { NomJobUser } from './HomeUserAPI';
 
 function HomeUser(props) 
   {
@@ -28,7 +29,7 @@ function HomeUser(props)
         Description : {props.post.description}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-        {props.post.jobId}
+        Job recherché : {NomJobUser(props.post.jobId)}
         </Typography>
         <Typography variant="body2" color="text.secondary">
         Prix : {props.post.price}
