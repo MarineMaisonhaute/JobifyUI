@@ -9,12 +9,12 @@ function AutocompleteSelectBox(props) {
 
   const debouncedFetch = useCallback(
     debounce((searchTerm) => {
-        if (searchTerm !== "") {
-            fetch(`https://localhost:7004/job/${searchTerm}`)
-              .then((response) => response.json())
-              .then((data) => setOptions(data))
-              .catch((error) => console.log(error));
-          }
+      if (searchTerm !== "") {
+        fetch(`https://localhost:7004/job/name/${searchTerm}`)
+          .then((response) => response.json())
+          .then((data) => setOptions(data))
+          .catch((error) => console.log(error));
+      }
     }, 500),
     []
   );

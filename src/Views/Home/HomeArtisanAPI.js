@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import * as React from 'react';
 import HomeArtisan from "./HomeArtisan";
 
-export function NomJobArtisan(Id) {  
+export function NomJobArtisan(Id) {
   const [posto, setPosto] = useState(null);
-  
+
   useEffect(() => {
     axios.get(`https://localhost:7004/job/id/${Id}`)
       .then((res) => {
@@ -15,15 +15,19 @@ export function NomJobArtisan(Id) {
         console.log(err);
       })
   }, []);
-  
+
   return posto ? posto.name : "Aucun job particulier";
 }
 
 function HomeArtisanAPI(props) {
   const [post, setPost] = useState([]);
-  
+
   useEffect(() => {
-    axios.get("https://localhost:7004/post")
+    axios.get("https://localhost:7004/post", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("access_token")}`
+      }
+    })
       .then((res) => {
         setPost(res.data);
       })
@@ -34,9 +38,11 @@ function HomeArtisanAPI(props) {
 
   return (
     <div>
-      {post.map((item, index) => {
-        return <HomeArtisan key={index} post={item}/>
-      })}
+      <div className="cards-wrapper">
+        {post.map((item, index) => {
+          return <HomeArtisan key={index} post={item} />
+        })}
+      </div>
     </div>
   );
 }

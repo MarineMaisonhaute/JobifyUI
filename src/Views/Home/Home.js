@@ -6,22 +6,22 @@ import HomeArtisanAPI from "./HomeArtisanAPI";
 import HomeUserAPI from "./HomeUserAPI";
 
 export const checkIfArtisan = () => {
-  if(localStorage.getItem("roles").split(',').includes("Artisan")){
+  if (localStorage.getItem("roles").split(',').includes("Artisan")) {
     return true;
   }
-  else{
+  else {
     return false;
   }
 }
 
 function Home(props) {
-    return (
-      <div className="Home">
-          <Navbar />
-          {checkIfArtisan() ? <HomeArtisanAPI /> : <HomeUserAPI />}
-      </div>
-     
-    );
-  }
-  
-  export default Home;
+  return (
+    <div className="Home">
+      <Navbar />
+      {checkIfArtisan() ? <HomeArtisanAPI /> : <HomeUserAPI />}
+    </div>
+
+  );
+}
+
+export default Home;

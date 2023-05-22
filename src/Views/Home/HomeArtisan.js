@@ -11,23 +11,30 @@ import { useState } from 'react';
 import './Home.css';
 import moment from 'moment';
 import { NomJobArtisan } from './HomeArtisanAPI';
-import { TextField } from '@mui/material';
+import { Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 
 function HomeArtisan(props) {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [comment, setComment] = useState('');
+  const [postId, setPostId] = useState(null);
 
   const dateString = props.post.finishDate;
   const date = moment(dateString);
   const formattedDate = date.format('YYYY-MM-DD');
 
-  const handleSubmit = async (event) => {console.log(comment);
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log(comment);
+    console.log(postId);
     try {
       const response = await axios.post('https://localhost:7004/response', {
-        postId: props.post.id,
+        postId: postId,
         comment: comment,
-      });
+      }, {
+        headers: {
+        Authorization: "Bearer " + localStorage.getItem("access_token")
+      }});
+
       console.log(response.data);
       setIsFormOpen(false);
     } catch (error) {
@@ -35,14 +42,28 @@ function HomeArtisan(props) {
     }
   };
 
+  const handleOpenForm = (postId) => {
+    setIsFormOpen(true);
+    setPostId(postId);
+  };
+
+  const handleCloseForm = () => {
+    setIsFormOpen(false);
+  };
+
   return (
-    <Card className="card-container">
+    <Card className="post-card" sx={{ width: '50%' }}>
+      <CardMedia
+        sx={{ height: 140 }}
+        image="https://img.helloartisan.com/webbackoffice/article/9/artisan-travaux.jpg"
+        title="Artisan"
+      />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {props.post.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Description : {props.post.description}
+          {props.post.description}
         </Typography>
         <Typography variant="body2" color="text.secondary">
           Job recherché : {NomJobArtisan(props.post.jobId)}
@@ -57,23 +78,30 @@ function HomeArtisan(props) {
           Département : {props.post.department}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button className="button" onClick={() => setIsFormOpen(true)}>
-          Proposer son aide
-        </Button>
-        {isFormOpen && (
-          <form onSubmit={handleSubmit}>
+      <div>
+        <CardActions>
+          <Button className="button-help" onClick={() => handleOpenForm(props.post.postId)}>
+            Proposer son aide
+          </Button>
+        </CardActions>
+        <Dialog open={isFormOpen} onClose={handleCloseForm}>
+          <DialogTitle>Je propose mon aide</DialogTitle>
+          <DialogContent>
             <TextField
+              className='form-comm-wrapper'
               label="Commentaire"
               value={comment}
               onChange={(event) => setComment(event.target.value)}
               required
-            />              
-            <Button type="submit">Envoyer</Button>
-            <Button onClick={() => setIsFormOpen(false)}>Annuler</Button>
-          </form>
-        )}
-      </CardActions>
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleCloseForm}>Annuler</Button>
+            <Button onClick={handleSubmit} type="submit" form="help-form">Envoyer</Button>
+          </DialogActions>
+        </Dialog>
+      </div>
+  
     </Card>
   );
 }

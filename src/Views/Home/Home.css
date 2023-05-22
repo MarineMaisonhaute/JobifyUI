@@ -6,16 +6,91 @@
   margin: 0 auto;
   margin-top: 20px;
   background-color: rgb(112, 165, 112) !important;
-  }
-  
-.button {
+}
+
+.button-help {
+  width: 100%;
   display: flex;
-  margin: 0 auto;
-  color :rgb(255, 255, 255) !important;
+  justify-content: center;
+  color: #70a570 !important;
 }
 
 .Ajout {
   display: flex;
   margin: 0 auto;
   align-items: center;
+}
+
+.post-button {
+  background-color: #70a570 !important;
+}
+
+.post-button:hover {
+  background-color: black !important;
+}
+
+.post-button-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.post-card {
+  width: 70%;
+  -webkit-box-shadow: 4px 6px 8px -5px #000000 !important;
+  box-shadow: 4px 6px 8px -5px #000000 !important;
+  margin-top: 30px;
+}
+
+.cards-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.cancel-button-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cancel-button {
+  background-color: grey !important;
+}
+
+.form-comm-wrapper {
+  margin-top: 10px !important;
+}
+
+.response-item{
+  border-top: 0.5px solid black;
+  margin-top: 15px;
+  width: 100%;
+}
+
+.comment{
+ width: 100%;
+}
+
+.username{
+  width: 100%;
+  display: flex;
+  justify-content: right;
+  align-items: right;
+  font-style: italic;
+  font-weight: bold;
+  color: grey;
+}
+
+.phone-number{
+  width: 100%;
+  display: flex;
+  justify-content: right;
+  align-items: right;
+  font-style: italic;
+  color: grey;
 }

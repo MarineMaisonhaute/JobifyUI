@@ -3,49 +3,46 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { click } from "@testing-library/user-event/dist/click";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import SubjectCard from "./SubjectCard";
-import TeacherCard from "./TeacherCard";
 import './Login.css';
 
 function Protected(props) {
   const [subject, setSubject] = useState([]);
 
   useEffect(() => {
-    axios.get("https://localhost:7004/job" , {
-      headers: { Authorization: 'Bearer ${localStorage.getItem("access_token")}'}
+    axios.get("https://localhost:7004/job", {
+      headers: { Authorization: 'Bearer ${localStorage.getItem("access_token")}' }
     }).then((res) => {
       setSubject(res.data);
-    }).catch((err)=> {
+    }).catch((err) => {
       console.log(err)
     })
   }, [])
 
-  function click(){
+  function click() {
     console.log(subject)
     console.log("titi")
   }
 
-    return (
-      <div className="Subject" class="centrage" style={{width: '50%'}}>
-          {subject.map((item,index) => (
-              <Accordion >
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel2a-content"
-                id="panel2a-header"
-              >
-                <Typography style={{width: '100%'}} class="couleur">Bonjour, je suis...</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>
-                  <SubjectCard key={index} subject={item} />
-                </Typography>
-              </AccordionDetails>
-            </Accordion>         
-          ))}
-      </div>
-      
-    )
-  }
-  
-  export default Protected;
+  return (
+    <div className="Subject" class="centrage" style={{ width: '50%' }}>
+      {subject.map((item, index) => (
+        <Accordion >
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel2a-content"
+            id="panel2a-header"
+          >
+            <Typography style={{ width: '100%' }} class="couleur">Bonjour, je suis...</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+      ))}
+    </div>
+
+  )
+}
+
+export default Protected;

@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AutocompleteSelectBox from './Components/AutocompleteSelectBox'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 function Copyright(props) {
   return (
@@ -30,12 +31,13 @@ function Copyright(props) {
 }
 const theme = createTheme();
 
+
 export default function SignUp() {
-  
-    const handleSubmit = (event) => {
+
+  const handleSubmit = (event) => {
     event.preventDefault();
     axios.post("https://localhost:7004/auth/signup", formData).then(_ => {
-        //navigate("/login")
+      navigate("/login")
     })
   };
 
@@ -43,38 +45,38 @@ export default function SignUp() {
 
   const [formData, setFormData] = React.useState(
     {
-        email: "",
-        firstName: "",
-        lastName: "",
-        userName: "",
-        role: "",
-        phoneNumber: "",
-        password: "",
-        dateOfBirth: "",
-        description: "",
-        adresse: "",
-        postalCode: "",
-        city: "",
-        country: "",
-        latitude: 0,
-        longitude: 0,
-        jobId: 0
-      }
-)
+      email: "",
+      firstName: "",
+      lastName: "",
+      userName: "",
+      role: "",
+      phoneNumber: "",
+      password: "",
+      dateOfBirth: "",
+      description: "",
+      adresse: "",
+      postalCode: "",
+      city: "",
+      country: "",
+      latitude: 0,
+      longitude: 0,
+      jobId: 0
+    }
+  )
 
   const handleSelectionChange = (value) => {
     setFormData(prevFormData => ({
-        ...prevFormData, 
-        jobId: value.jobId
+      ...prevFormData,
+      jobId: value.jobId
     }))
   }
 
   const handleChange = (event) => {
     setFormData({
-        ...formData,
-        [event.target.name]: event.target.value
-        });
-    }
+      ...formData,
+      [event.target.name]: event.target.value
+    });
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -131,7 +133,7 @@ export default function SignUp() {
                 />
               </Grid>
               <Grid item xs={12}>
-              <AutocompleteSelectBox onSelectionChange={(value) => handleSelectionChange(value)}/>
+                <AutocompleteSelectBox onSelectionChange={(value) => handleSelectionChange(value)} />
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -145,6 +147,33 @@ export default function SignUp() {
                 />
               </Grid>
               <Grid item xs={12}>
+                <label>Choisissez votre rôle :</label>
+                <div>
+                  <label>
+                    <input
+                      type="radio"
+                      value="Artisan"
+                      display="Artisan"
+                      name="role"
+                      onChange={handleChange}
+                    />
+                    Artisan
+                  </label>
+                </div>
+                <div>
+                  <label>
+                    <input
+                      type="radio"
+                      value="Customer"
+                      display="Client"
+                      name="role"
+                      onChange={handleChange}
+                    />
+                    Client
+                  </label>
+                </div>
+              </Grid>
+              <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
@@ -152,6 +181,18 @@ export default function SignUp() {
                   name="phoneNumber"
                   label="Téléphone"
                   id="phoneNumber"
+                  autoComplete="new-phone"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  type="date"
+                  required
+                  fullWidth
+                  onChange={handleChange}
+                  name="dateOfBirth"
+                  label="Date de naissance"
+                  id="dateOfBirth"
                   autoComplete="new-dateOfBirth"
                 />
               </Grid>

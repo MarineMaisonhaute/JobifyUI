@@ -1,9 +1,9 @@
-.forgot-container{
+.forgot-container {
   flex-direction: column !important;
   text-align: center !important;
 }
 
-.forgot-container-item{
+.forgot-container-item {
   width: 100%;
   margin-bottom: 10px !important;
 }

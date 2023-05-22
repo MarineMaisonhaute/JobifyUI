@@ -13,12 +13,13 @@
   }
 }
 
-.app-navbar{
+.app-navbar {
   background-color: rgb(15, 106, 70) !important;
-  color : rgb(255, 255, 255) !important;
+  color: rgb(255, 255, 255) !important;
 }
-.navbar-icon{
-  color : rgb(255, 255, 255) !important;
+
+.navbar-icon {
+  color: rgb(255, 255, 255) !important;
 }
 
 .App-header {
@@ -40,6 +41,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
