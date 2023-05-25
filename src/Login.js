@@ -50,7 +50,6 @@ function Login(props) {
     setFormData({
       ...formData,
       [event.target.name]: event.target.value
-      // email: "marine" password: "Marine1234#"
     });
   }
 

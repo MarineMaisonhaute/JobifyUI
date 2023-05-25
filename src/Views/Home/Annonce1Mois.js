@@ -12,9 +12,10 @@ import './Home.css';
 import moment from 'moment';
 import { NomJobArtisan } from './HomeArtisanAPI';
 import { Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
-import { Today } from '@mui/icons-material';
 
-function HomeArtisan(props) {
+
+function Annonce1Mois(props) {
+
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [comment, setComment] = useState('');
   const [postId, setPostId] = useState(null);
@@ -107,4 +108,4 @@ function HomeArtisan(props) {
   );
 }
 
-export default HomeArtisan;
+export default Annonce1Mois;

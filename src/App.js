@@ -8,6 +8,7 @@ import { Base64 } from 'js-base64';
 import Home from './Views/Home/Home';
 import SignUp from './SignUP';
 import CreatePost from './Views/Home/CreatePost';
+import Annonce1MoisAPI from './Views/Home/Annonce1MoisAPI';
 
 function isTokenExpired(token) {
   try {
@@ -47,6 +48,8 @@ function App() {
         <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
         <Route path="/SignUp" element={<SignUp />} exact />
         <Route path="/createpost" element={<ProtectedRoute><CreatePost /></ProtectedRoute>} />
+        <Route path="/annonce1m" element={<Annonce1MoisAPI />} exact />
+        <Route path="/annonce1mois" element={<ProtectedRoute><Annonce1MoisAPI /></ProtectedRoute>} />
       </Routes>
     </BrowserRouter>
   );

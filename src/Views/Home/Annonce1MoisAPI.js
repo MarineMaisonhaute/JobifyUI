@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import * as React from 'react';
 import HomeArtisan from "./HomeArtisan";
 import { Button, Link } from "@mui/material";
+import Annonce1Mois from "./Annonce1Mois";
+import { DateTimePicker } from "@mui/lab";
+import { Today } from "@mui/icons-material";
 
 export function NomJobArtisan(Id) {
   const [posto, setPosto] = useState(null);
@@ -20,11 +23,15 @@ export function NomJobArtisan(Id) {
   return posto ? posto.name : "Aucun job particulier";
 }
 
-function HomeArtisanAPI(props) {
+function Annonce1MoisAPI(props) {
   const [post, setPost] = useState([]);
-
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, '0');
+  const day = String(today.getDate()).padStart(2, '0');
+  const formattedDate = `${year}-${month}-${day}`;
   useEffect(() => {
-    axios.get("https://localhost:7004/post", {
+    axios.get(`https://localhost:7004/post/date?date=${formattedDate}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("access_token")}`
       }
@@ -41,15 +48,15 @@ function HomeArtisanAPI(props) {
     <div>
       <div>
         <div className="post-button-wrapper">
-          <Link href="/annonce1m">
-            <Button className="post-button" variant="contained">Annonce expirant dans + 1 mois</Button>
+          <Link href="/home">
+            <Button className="post-button" variant="contained">Revenir à toutes les annonces</Button>
           </Link>
         </div>
       </div>
       <div>
         <div className="cards-wrapper">
           {post.map((item, index) => {
-            return <HomeArtisan key={index} post={item} />
+            return <Annonce1Mois key={index} post={item} />
           })}
         </div>
       </div>
@@ -58,4 +65,4 @@ function HomeArtisanAPI(props) {
 }
 
 
-export default HomeArtisanAPI;
+export default Annonce1MoisAPI;
